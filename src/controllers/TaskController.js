@@ -5,7 +5,7 @@ exports.CreateTask = (req, res) => {
   reqBody.email = req.headers["email"];
   TaskModel.create(reqBody, (err, data) => {
     if (err) {
-      res.status(200).json({ status: "Fail", data: err });
+      res.status(401).json({ status: "Fail", data: err });
     } else {
       res.status(201).json({ status: "Success", data: data });
     }
@@ -20,7 +20,7 @@ exports.UpdateTask = (req, res) => {
 
   TaskModel.updateOne(Query, reqBody, (err, data) => {
     if (err) {
-      res.status(200).json({ status: "Fail", data: err });
+      res.status(401).json({ status: "Fail", data: err });
     } else {
       res.status(201).json({ status: "Success", data: data });
     }
@@ -32,7 +32,7 @@ exports.DeleteTask = (req, res) => {
   let Query = { _id: id };
   TaskModel.remove(Query, (err, data) => {
     if (err) {
-      res.status(200).json({ status: "Fail", data: err });
+      res.status(401).json({ status: "Fail", data: err });
     } else {
       res.status(201).json({ status: "Success", data: data });
     }
@@ -63,7 +63,7 @@ exports.ListTaskByStatus = (req, res) => {
     ],
     (err, data) => {
       if (err) {
-        res.status(200).json({ status: "Fail", data: err });
+        res.status(401).json({ status: "Fail", data: err });
       } else {
         res.status(201).json({ status: "Success", data: data });
       }
@@ -81,7 +81,7 @@ exports.TaskStausCount = (req, res) => {
     ],
     (err, data) => {
       if (err) {
-        res.status(200).json({ status: "Fail", data: err });
+        res.status(401).json({ status: "Fail", data: err });
       } else {
         res.status(201).json({ status: "Success", data: data });
       }

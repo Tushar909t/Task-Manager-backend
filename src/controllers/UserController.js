@@ -7,7 +7,7 @@ exports.Registration = (req, res) => {
 
   UserModel.create(reqBody, (err, data) => {
     if (err) {
-      res.status(200).json({ status: "Fail", data: err });
+      res.status(401).json({ status: "Fail", data: err });
     } else {
       res.status(201).json({ status: "success", data: data });
     }
@@ -34,7 +34,7 @@ exports.Login = (req, res) => {
     ],
     (err, data) => {
       if (err) {
-        res.status(404).json({ status: "Fail", data: err });
+        res.status(401).json({ status: "Fail", data: err });
       } else {
         if (data.length > 0) {
           let Payload = {
@@ -58,7 +58,7 @@ exports.UpdateProfile = (req, res) => {
   let reqBody = req.body;
   UserModel.updateOne({ email: email }, reqBody, (err, data) => {
     if (err) {
-      res.status(200).json({ status: "fail", data: err });
+      res.status(400).json({ status: "fail", data: err });
     } else {
       res.status(201).json({ status: "success", data: data });
     }

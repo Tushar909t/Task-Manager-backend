@@ -15,7 +15,7 @@ const cors = require("cors");
 
 // Database Lib Import
 const mongoose = require("mongoose");
-app.use(express.static("../client-side/build"));
+// app.use(express.static("../client-side/build"));
 
 // Security Middleware Implement
 app.use(cors());
@@ -32,7 +32,7 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 
 // Mongo DB Database Connection
-let URI = "mongodb://localhost:27017/task";
+let URI = "mongodb+srv://tushar90:tushar90@cluster0.ulgvuat.mongodb.net/task";
 let OPTION = {
   autoIndex: false, // Don't build indexes
   maxPoolSize: 10, // Maintain up to 10 socket connections
@@ -54,10 +54,10 @@ app.use("*", (req, res) => {
 });
 
 // Add React Front End Routing
-app.get("*", function (req, res) {
-  res.sendFile(
-    path.resolve(__dirname, "../client-side/", "build", "index.html")
-  );
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(
+//     path.resolve(__dirname, "../client-side/", "build", "index.html")
+//   );
+// });
 
 module.exports = app;
