@@ -32,7 +32,7 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 
 // Mongo DB Database Connection
-let URI = "mongodb+srv://tushar90:tushar90@cluster0.ulgvuat.mongodb.net/task";
+let URI = "mongodb://localhost:27017/task";
 let OPTION = {
   autoIndex: false, // Don't build indexes
   maxPoolSize: 10, // Maintain up to 10 socket connections
