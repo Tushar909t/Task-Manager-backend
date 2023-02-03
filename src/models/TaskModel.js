@@ -11,5 +11,5 @@ const DataSchema = mongoose.Schema(
   { versionKey: false }
 );
 
-const TaskModel = mongoose.model("task", DataSchema);
+const TaskModel = mongoose.model("tasks", DataSchema);
 module.exports = TaskModel;

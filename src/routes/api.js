@@ -5,16 +5,16 @@ const AuthVerifyMiddleware = require("../Middleware/AuthVerifyMiddleware");
 const router = express.Router();
 
 // C=Create
-router.post("/Registration", UserController.Registration);
+router.post("/Registrations", UserController.Registrations);
 
-router.post("/Login", UserController.Login);
+router.post("/Logins", UserController.Logins);
 // R=Read
 
 // // U=Update
 router.post(
-  "/UpdateProfile",
+  "/UpdateProfiles",
   AuthVerifyMiddleware,
-  UserController.UpdateProfile
+  UserController.UpdateProfiles
 );
 
 // // Delete
@@ -28,7 +28,11 @@ router.get(
   TaskController.UpdateTask
 );
 // // Task-Delete
-router.post("/DeleteTask/:id", AuthVerifyMiddleware, TaskController.DeleteTask);
+router.delete(
+  "/DeleteTask/:id",
+  AuthVerifyMiddleware,
+  TaskController.DeleteTask
+);
 // Task-ListStatus
 router.get(
   "/ListTaskByStatus/:status",

@@ -2,21 +2,27 @@ const UserModel = require("../models/UserModel");
 const jwt = require("jsonwebtoken");
 
 // Registration
-exports.Registration = (req, res) => {
+exports.Registrations = (req, res) => {
   let reqBody = req.body;
-
-  UserModel.create(reqBody, (err, data) => {
-    if (err) {
-      res.status(401).json({ status: "Fail", data: err });
+  let email = req.body.email;
+  UserModel.findOne(reqBody, email, (err, data) => {
+    if (data) {
+      res.status(402).json({ message: "fail", data: err });
     } else {
-      res.status(201).json({ status: "success", data: data });
+      UserModel.create(reqBody, (err, data) => {
+        if (err) {
+          res.status(401).json({ status: "fail", data: err });
+        } else {
+          res.status(200).json({ status: "success", data: data });
+        }
+      });
     }
   });
 };
 
 // UserLogin
 
-exports.Login = (req, res) => {
+exports.Logins = (req, res) => {
   let reqBody = req.body;
   UserModel.aggregate(
     [
@@ -53,7 +59,7 @@ exports.Login = (req, res) => {
   );
 };
 
-exports.UpdateProfile = (req, res) => {
+exports.UpdateProfiles = (req, res) => {
   let email = req.headers["email"];
   let reqBody = req.body;
   UserModel.updateOne({ email: email }, reqBody, (err, data) => {

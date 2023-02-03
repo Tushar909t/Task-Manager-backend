@@ -30,7 +30,7 @@ exports.UpdateTask = (req, res) => {
 exports.DeleteTask = (req, res) => {
   let id = req.params.id;
   let Query = { _id: id };
-  TaskModel.remove(Query, (err, data) => {
+  TaskModel.deleteOne(Query, (err, data) => {
     if (err) {
       res.status(401).json({ status: "Fail", data: err });
     } else {
