@@ -8,17 +8,22 @@ const router = express.Router();
 router.post("/Registrations", UserController.Registrations);
 
 router.post("/Logins", UserController.Logins);
-// R=Read
-
+// User-Rest-Password
+router.get("/RecoveryVerifyEmail/:email", UserController.RecoveryVerifyEmail);
+router.get("/RecoveryVerifyOTP/:email/:otp", UserController.RecoveryVerifyOTP);
+router.post("/ResetPassword", UserController.ResetPassword);
 // // U=Update
 router.post(
   "/UpdateProfiles",
   AuthVerifyMiddleware,
   UserController.UpdateProfiles
 );
-
 // // Delete
-
+router.delete(
+  "/DeleteUser/:id",
+  AuthVerifyMiddleware,
+  UserController.DeleteUser
+);
 // // Task-Create
 router.post("/CreateTask", AuthVerifyMiddleware, TaskController.CreateTask);
 // Task-Update
@@ -26,6 +31,11 @@ router.get(
   "/UpdateTask/:id/:status",
   AuthVerifyMiddleware,
   TaskController.UpdateTask
+);
+router.get(
+  "/UserProfileDetails",
+  AuthVerifyMiddleware,
+  UserController.UserProfileDetails
 );
 // // Task-Delete
 router.delete(
