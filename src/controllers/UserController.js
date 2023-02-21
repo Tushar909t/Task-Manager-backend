@@ -15,6 +15,27 @@ exports.Registrations = (req, res) => {
     }
   });
 };
+
+// exports.Registrations = (req, res) => {
+//   let reqBody = req.body;
+//   UserModel.aggregate(
+//     [{ $match: reqBody }, { $project: { email: 1 } }],
+//     (err, data) => {
+//       if (data.length > 0) {
+//         res.status(402).json({ status: "fail", data: "email exits" });
+//       } else {
+//         UserModel.create(reqBody, (err, data) => {
+//           if (err) {
+//             res.status(401).json({ status: "fail", data: err });
+//           } else {
+//             res.status(201).json({ status: "success", data: data });
+//           }
+//         });
+//       }
+//     }
+//   );
+// };
+
 // UserLogin
 
 exports.Logins = (req, res) => {

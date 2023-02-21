@@ -12,6 +12,10 @@ const DataSchema = mongoose.Schema(
   },
   { versionKey: false }
 );
+DataSchema.path("email").validate(async (email) => {
+  const emailCount = await mongoose.models.users.countDocuments({ email });
+  return !emailCount;
+}, "Email Already Exists");
 
 const UserModel = mongoose.model("users", DataSchema);
 

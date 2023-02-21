@@ -36,6 +36,10 @@ app.use(limiter);
 // Mongo DB Database Connection
 let URI = "mongodb://localhost:27017/task";
 // "mongodb+srv://mern:fktwJs7r5zM99j1G@cluster0.t42n4hi.mongodb.net/?retryWrites=true&w=majority";
+//im getting my MongoDB connection link from config.js file
+
+// and then the connection function
+
 let OPTION = {
   autoIndex: false, // Don't build indexes
   maxPoolSize: 10, // Maintain up to 10 socket connections
