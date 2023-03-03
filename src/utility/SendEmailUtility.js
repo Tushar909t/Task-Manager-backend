@@ -9,8 +9,8 @@ const SendEmailUtility = async (EmailTo, EmailText, EmialSubject) => {
       port: 465,
       secure: false,
       auth: {
-        user: "playergtax6@gmail.com",
-        pass: "ojsihvbttwktukdz",
+        user: process.env.EMAIL_USER,
+        pass: process.env.PASS_USER,
       },
       tls: {
         rejectUnauthorized: false,

@@ -4,6 +4,7 @@ const router = require("./src/routes/api");
 const app = new express();
 const bodyParser = require("body-parser");
 const path = require("path");
+require("dotenv").config();
 
 // Security Middleware Lib Import
 const rateLimit = require("express-rate-limit");
@@ -15,7 +16,7 @@ const cors = require("cors");
 
 // Database Lib Import
 const mongoose = require("mongoose");
-app.use(express.static("../client-side/build"));
+app.use(express.static("../client/build"));
 
 // Security Middleware Implement
 app.use(cors());
@@ -34,11 +35,7 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 
 // Mongo DB Database Connection
-let URI = "mongodb://localhost:27017/task";
-// "mongodb+srv://mern:fktwJs7r5zM99j1G@cluster0.t42n4hi.mongodb.net/?retryWrites=true&w=majority";
-//im getting my MongoDB connection link from config.js file
-
-// and then the connection function
+let URI = process.env.MONGODB_URL;
 
 let OPTION = {
   autoIndex: false, // Don't build indexes
@@ -63,9 +60,7 @@ app.use("/api/v1", router);
 
 // Add React Front End Routing
 app.get("*", function (req, res) {
-  res.sendFile(
-    path.resolve(__dirname, "../client-side/", "build", "index.html")
-  );
+  res.sendFile(path.resolve(__dirname, "../client/", "build", "index.html"));
 });
 
 module.exports = app;
